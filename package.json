@@ -1,0 +1,27 @@
+{
+  "name": "proxyjs",
+  "version": "1.0.0",
+  "description": "HTTP Proxy Server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "eslint": "eslint .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gr3gdev/proxyjs.git"
+  },
+  "author": "Gregroy Tardivel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gr3gdev/proxyjs/issues"
+  },
+  "homepage": "https://github.com/gr3gdev/proxyjs#readme",
+  "dependencies": {
+    "dayjs": "^1.11.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.18.0"
+  }
+}

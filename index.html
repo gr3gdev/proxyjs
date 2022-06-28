@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>HTTP Proxy Server</title>
+    <style>
+        .blacklist-new {
+            padding: 2em;
+        }
+
+        .blacklist-new #new-url {
+            width: 50vw;
+            line-height: 2em;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+            padding-left: 2em;
+            padding-bottom: 1em;
+        }
+
+        li span {
+            width: 80vw;
+        }
+
+        .blacklist-new button,
+        li button {
+            float: right;
+            margin-right: 2em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Black list</h1>
+    <div class="blacklist">
+        <div class="blacklist-new">
+            <label>
+                New blacklist URL :
+                <input type="text" id="new-url">
+            </label>
+            <button id="add-url" title="Add blacklist URL">Add</button>
+        </div>
+        <ul class="blacklist-urls">
+        </ul>
+    </div>
+    <script>
+        document.querySelector('#add-url').addEventListener('click', () => {
+            fetch(`/blacklist?new=${document.querySelector('#new-url').value}`, {
+                method: 'PUT'
+            })
+                .then(() => load());
+        });
+        const load = () => {
+            fetch('/blacklist').then(async res => {
+                const urls = document.querySelector('.blacklist-urls');
+                urls.innerHTML = '';
+                const list = await res.json();
+                list.forEach(b => {
+                    const line = document.createElement('li');
+                    line.classList.add('blacklist-url');
+                    const url = document.createElement('span');
+                    url.innerHTML = b;
+                    line.appendChild(url);
+                    const remove = document.createElement('button');
+                    remove.title = `Remove ${b}`;
+                    remove.addEventListener('click', () => {
+                        fetch(`/blacklist?url=${b}`, {
+                            method: 'DELETE'
+                        })
+                            .then(() => load());
+                    });
+                    remove.innerHTML = 'Remove';
+                    line.appendChild(remove);
+                    urls.appendChild(line);
+                });
+            });
+        }
+        load();
+    </script>
+</body>
+
+</html>
