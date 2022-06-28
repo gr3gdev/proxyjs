@@ -51,7 +51,7 @@
     </div>
     <script>
         document.querySelector('#add-url').addEventListener('click', () => {
-            fetch(`/blacklist?new=${document.querySelector('#new-url').value}`, {
+            fetch(`/blacklist?url=${document.querySelector('#new-url').value}`, {
                 method: 'PUT'
             })
                 .then(() => load());

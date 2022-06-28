@@ -59,7 +59,7 @@ module.exports = {
             }
             if (req.method === 'PUT' && req.url.indexOf('/blacklist') === 0) {
                 const parts = url.parse(req.url, true);
-                const newUrl = parts.query.new;
+                const newUrl = parts.query.url;
                 log('INFO', `+ Add blacklist: ${newUrl}`);
                 blacklist.push(newUrl);
                 writeBlacklist().then(() => {

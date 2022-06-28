@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "eslint": "eslint .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test.js --reporter spec --exit --timeout=5000"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,10 @@
     "dayjs": "^1.11.3"
   },
   "devDependencies": {
-    "eslint": "^8.18.0"
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
+    "eslint": "^8.18.0",
+    "mocha": "^10.0.0",
+    "superagent-proxy": "^3.0.0"
   }
 }
