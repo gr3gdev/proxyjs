@@ -1,4 +1,4 @@
-FROM arm32v6/node:lts-alpine
+FROM arm32v6/node:14-alpine3.10
 
 WORKDIR /app
 COPY index.html /app/.
