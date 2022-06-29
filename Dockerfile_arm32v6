@@ -1,4 +1,4 @@
-FROM arm32v6/node:alpine
+FROM arm32v6/node:lts-alpine
 
 WORKDIR /app
 COPY index.html /app/.
@@ -9,4 +9,4 @@ COPY package.json /app/.
 RUN npm install --omit=dev
 RUN echo "[]" > blacklist
 
-CMD [ "npm", "start" ]
+CMD [ "node", "index.js" ]
